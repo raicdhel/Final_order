@@ -34,6 +34,17 @@ public class Order {
             .doPayment(payment);
 
 
+
+        pizza.external.Location location = new pizza.external.Location();
+
+        location.setOrderId(this.getId());
+        location.setNowStatus(this.orderStatus);
+        location.setDesc("Thanks !!!");
+
+        // mappings goes here
+        OrderApplication.applicationContext.getBean(pizza.external.LocationService.class)
+                .doSave(location);
+
     }
 
     @PostUpdate
@@ -49,7 +60,7 @@ public class Order {
 
         location.setOrderId(this.getId());
         location.setNowStatus(this.orderStatus);
-        location.setDesc("Thanks !!!");
+        location.setDesc("Good-Bye !!!");
 
         // mappings goes here
         OrderApplication.applicationContext.getBean(pizza.external.LocationService.class)

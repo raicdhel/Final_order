@@ -62,3 +62,7 @@ spring:
         event-out:
           destination: pizza
           contentType: application/json
+api:
+  url:
+    payment: payment:8080
+    location: location:8080

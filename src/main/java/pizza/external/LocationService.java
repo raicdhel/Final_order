@@ -8,7 +8,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import java.util.Date;
 
-@FeignClient(name="location", url="http://location:8080")
+//@FeignClient(name="location", url="http://location:8080")
+@FeignClient(name="location", url="${api.url.location}")
 //@FeignClient(name="location", url="http://localhost:8086")
 public interface LocationService {
 
