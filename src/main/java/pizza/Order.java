@@ -12,7 +12,7 @@ public class Order {
     @GeneratedValue(strategy=GenerationType.AUTO)
     private Long id;
     private Long pizzaId;
-    private String orderStatus ="Ordered";
+    private String orderStatus = "Ordered";
     private Long qty;
 
     @PostPersist
@@ -32,6 +32,8 @@ public class Order {
         // mappings goes here
         OrderApplication.applicationContext.getBean(pizza.external.PaymentService.class)
             .doPayment(payment);
+
+
     }
 
     @PostUpdate
@@ -39,8 +41,6 @@ public class Order {
         OrderCanceled orderCanceled = new OrderCanceled();
         BeanUtils.copyProperties(this, orderCanceled);
         orderCanceled.publishAfterCommit();
-
-
     }
 
 
