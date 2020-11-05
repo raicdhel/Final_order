@@ -41,6 +41,19 @@ public class Order {
         OrderCanceled orderCanceled = new OrderCanceled();
         BeanUtils.copyProperties(this, orderCanceled);
         orderCanceled.publishAfterCommit();
+
+        //Following code causes dependency to external APIs
+        // it is NOT A GOOD PRACTICE. instead, Event-Policy mapping is recommended.
+
+        pizza.external.Location location = new pizza.external.Location();
+
+        location.setOrderId(this.getId());
+        location.setNowStatus(this.orderStatus);
+        location.setDesc("Thanks !!!");
+
+        // mappings goes here
+        OrderApplication.applicationContext.getBean(pizza.external.LocationService.class)
+            .doSave(location);
     }
 
 
