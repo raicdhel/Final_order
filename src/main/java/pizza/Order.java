@@ -34,7 +34,7 @@ public class Order {
             .doPayment(payment);
 
 
-
+        // For Circuit Breaker Test
         pizza.external.Location location = new pizza.external.Location();
 
         location.setOrderId(this.getId());
